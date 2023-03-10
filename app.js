@@ -45,7 +45,7 @@ function startQuiz() {
 }
 
 function appendQuestion() {
-  quizHeader.innerHTML = `<h3 class='quizHeader'>Q${qNum+1}/${questions.length}</h3><span id='timer'${minutes}:${seconds}</span>`
+  quizHeader.innerHTML = `<h3 class='quizHeader'>Q${qNum + 1}/${questions.length}</h3><span id='timer'${minutes}:${seconds}</span>`
   var divBody = `<h3 class='quizHeader'>Q: ${questions[qNum].question}</h3>`
   divBody += "<ul class='option_group' id='option_group'>"
   for (var i = 0; i < questions[qNum].options.length; i++)
@@ -113,10 +113,18 @@ function loadLeaderboard() {
       resultsArray.push(childData); // add the data to the array
     });
 
-    // Sort the array based on the score (percentage of correct answers)
+    // Sort the array based on the score (percentage of correct answers) and time taken
     resultsArray.sort(function (a, b) {
-      return (b.correctQuestions / b.totalQuestions) - (a.correctQuestions / a.totalQuestions);
+      const aScore = a.correctQuestions / a.totalQuestions;
+      const bScore = b.correctQuestions / b.totalQuestions;
+      if (aScore === bScore) {
+        // If scores are equal, sort by time taken (lowest time first)
+        return a.timeTaken.localeCompare(b.timeTaken);
+      }
+      // Otherwise, sort by score (highest score first)
+      return bScore - aScore;
     });
+
 
     // Create the table and append the sorted results
     var divBody = "<table class='table table-bordered'>";
@@ -136,7 +144,7 @@ function loadLeaderboard() {
       divBody += `<td>${ranking}</td>`;
       divBody += `<td class="username-cell">${result.username}</td>`;
       divBody += `<td class="score-cell">${result.correctQuestions}/${result.totalQuestions}</td>`;
-      divBody += `<td class="percentage-cell">${((result.correctQuestions/result.totalQuestions)*100).toFixed(2)}%</td>`;
+      divBody += `<td class="percentage-cell">${((result.correctQuestions / result.totalQuestions) * 100).toFixed(2)}%</td>`;
       divBody += `<td class="time-cell">${result.timeTaken}</td>`;
       divBody += "</tr>";
       ranking++;
@@ -180,10 +188,18 @@ function appendResult() {
       resultsArray.push(childData); // add the data to the array
     });
 
-    // Sort the array based on the score (percentage of correct answers)
-    resultsArray.sort(function (a, b) {
-      return (b.correctQuestions / b.totalQuestions) - (a.correctQuestions / a.totalQuestions);
-    });
+    // Sort the array based on the score (percentage of correct answers) and time taken
+resultsArray.sort(function (a, b) {
+  const aScore = a.correctQuestions / a.totalQuestions;
+  const bScore = b.correctQuestions / b.totalQuestions;
+  if (aScore === bScore) {
+    // If scores are equal, sort by time taken (lowest time first)
+    return a.timeTaken.localeCompare(b.timeTaken);
+  }
+  // Otherwise, sort by score (highest score first)
+  return bScore - aScore;
+});
+
 
     // Create the table and append the sorted results
     var divBody = "<table class='table table-bordered'>";
@@ -203,7 +219,7 @@ function appendResult() {
       divBody += `<td>${ranking}</td>`;
       divBody += `<td class="username-cell">${result.username}</td>`;
       divBody += `<td class="score-cell">${result.correctQuestions}/${result.totalQuestions}</td>`;
-      divBody += `<td class="percentage-cell">${((result.correctQuestions/result.totalQuestions)*100).toFixed(3)}%</td>`;
+      divBody += `<td class="percentage-cell">${((result.correctQuestions / result.totalQuestions) * 100).toFixed(3)}%</td>`;
       divBody += `<td class="time-cell">${result.timeTaken}</td>`;
       divBody += "</tr>";
       ranking++;
@@ -271,12 +287,12 @@ function getQuestions() { //Gets all the questions from firebase and save them i
     for (var property in data) { //run this loop as long as the data has some property
       if (data.hasOwnProperty(property)) { //check if this is its own proeprty
         questions[qNum] = //create objects inside new question
-          {
-            key: "",
-            question: "",
-            answer: "",
-            options: []
-          }
+        {
+          key: "",
+          question: "",
+          answer: "",
+          options: []
+        }
         questions[qNum].key = data[property].key
         questions[qNum].answer = data[property].answer
         questions[qNum].options = data[property].options
@@ -303,7 +319,7 @@ function appendAllQuestions() {
 
 
     var divBody = "<li style='background-color: grey; border-radius: 30px; padding: 10px 30px; margin-bottom: 10px'>"
-    divBody += `<h3 class='quizHeader'>Q${j+1}:&nbsp${questionVal}</h3>`
+    divBody += `<h3 class='quizHeader'>Q${j + 1}:&nbsp${questionVal}</h3>`
     divBody += "<ul class='options_group' id='options_group'>" //ul for options
     for (var i = 0; i < numOfOptions; i++) {
       if (optionVals[i] === answerVal)
@@ -332,7 +348,7 @@ function addQuestion() {
     htmlDesign += '<ul style="width: 1000px">'
     // this for loop willbe used to add input field for options
     for (var i = 0; i < 4; i++)
-      htmlDesign += `<li style="display: flex;" class="panelLi"><h3>Option ${i+1}:&nbsp</h3><input class="form-control w-50"></li>`
+      htmlDesign += `<li style="display: flex;" class="panelLi"><h3>Option ${i + 1}:&nbsp</h3><input class="form-control w-50"></li>`
     htmlDesign += '<li style="display: flex;"><h3>Answer:&nbsp</h3><input class="form-control w-50"></li>'
     htmlDesign += '<li style="display: flex; justify-content: center;">'
     htmlDesign += '<button class="btn btn-success liBtnAdd fa fa-check" onclick="addRec(this)"></button>'
@@ -475,7 +491,7 @@ function editRec(id) {
     htmlDesign += '<ul style="width: 1000px">'
     // this for loop willbe used to add input field for options
     for (var i = 0; i < 4; i++)
-      htmlDesign += `<li style="display: flex;" class="panelLi"><h3>Option ${i+1}:&nbsp</h3><input class="form-control w-50" value="${optionVals[i]}"></li>`
+      htmlDesign += `<li style="display: flex;" class="panelLi"><h3>Option ${i + 1}:&nbsp</h3><input class="form-control w-50" value="${optionVals[i]}"></li>`
     htmlDesign += `<li style="display: flex;"><h3>Answer:&nbsp</h3><input class="form-control w-50" value="${answerVal}"></li>`
     htmlDesign += '<li style="display: flex; justify-content: center;">'
     htmlDesign += `<button class="btn btn-success liBtnAdd fa fa-check" id="${key}" onclick="addRec(this)"></button>` // the same addRec() function will be used
