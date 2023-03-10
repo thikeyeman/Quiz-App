@@ -134,10 +134,10 @@ function loadLeaderboard() {
     resultsArray.forEach(function (result) {
       divBody += "<tr>";
       divBody += `<td>${ranking}</td>`;
-      divBody += `<td>${result.username}</td>`;
-      divBody += `<td>${result.correctQuestions}/${result.totalQuestions}</td>`;
-      divBody += `<td>${((result.correctQuestions/result.totalQuestions)*100).toFixed(3)}%</td>`;
-      divBody += `<td>${result.timeTaken}</td>`;
+      divBody += `<td class="username-cell">${result.username}</td>`;
+      divBody += `<td class="score-cell">${result.correctQuestions}/${result.totalQuestions}</td>`;
+      divBody += `<td class="percentage-cell">${((result.correctQuestions/result.totalQuestions)*100).toFixed(2)}%</td>`;
+      divBody += `<td class="time-cell">${result.timeTaken}</td>`;
       divBody += "</tr>";
       ranking++;
     });
@@ -201,10 +201,10 @@ function appendResult() {
     resultsArray.forEach(function (result) {
       divBody += "<tr>";
       divBody += `<td>${ranking}</td>`;
-      divBody += `<td>${result.username}</td>`;
-      divBody += `<td>${result.correctQuestions}/${result.totalQuestions}</td>`;
-      divBody += `<td>${((result.correctQuestions/result.totalQuestions)*100).toFixed(3)}%</td>`;
-      divBody += `<td>${result.timeTaken}</td>`;
+      divBody += `<td class="username-cell">${result.username}</td>`;
+      divBody += `<td class="score-cell">${result.correctQuestions}/${result.totalQuestions}</td>`;
+      divBody += `<td class="percentage-cell">${((result.correctQuestions/result.totalQuestions)*100).toFixed(3)}%</td>`;
+      divBody += `<td class="time-cell">${result.timeTaken}</td>`;
       divBody += "</tr>";
       ranking++;
     });

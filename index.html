@@ -44,40 +44,41 @@
 </head>
 <body>
 <div id="mainDiv">
-<div id="loaderDiv">
-  <div id="loader" class="spinner-border"></div>
-</div>
-<!-- ==================Admin Panel================ -->
-<div id="mainPanel" style="display: none;">
-  <div id="panelInner">
-    <div id="header">
-      <h3>質問</h3>
-    </div>
-    <div id="questionsBody">
-      <ul id="questionsUl">
-      </ul>
-      <button class="btn btn-danger homeBtn" onclick="homePage()">終了</button>
-    </div>
-    <div id="addBtnDiv">
-      <button id="addBtn" class="btn btn-success fa fa-plus" onclick="addQuestion()"></button>
-      <button id="delAllBtn" class="btn btn-danger fa fa-trash" onclick="dellAll()"></button>
+  <div id="loaderDiv">
+    <div id="loader" class="spinner-border"></div>
+  </div>
+  <!-- ==================Admin Panel================ -->
+  <div id="mainPanel" style="display: none;">
+    <div id="panelInner">
+      <div id="header">
+        <h3>質問</h3>
+      </div>
+      <div id="questionsBody">
+        <ul id="questionsUl">
+        </ul>
+        <button class="btn btn-danger homeBtn" onclick="homePage()">終了</button>
+      </div>
+      <div id="addBtnDiv">
+        <button id="addBtn" class="btn btn-success fa fa-plus" onclick="addQuestion()"></button>
+        <button id="delAllBtn" class="btn btn-danger fa fa-trash" onclick="dellAll()"></button>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- ==================Home Page================ --> 
-<span class="homeButtons">
-<button class="btn btn-success startBtn" id="startBtn" onclick="startQuiz()">Quizを開始</button>
-<button class="btn btn-success leaderboardBtn" id="leaderboardBtn" onclick="loadLeaderboard()">ランキング</button>
-</span>
-<button class="adminBtn" id="adminBtn" onclick="adminPanel()"><i class="fas fa-cog"></i> </button>
-
-<!-- ==================Quiz Body================ -->
-<div id="mainBody" style="display: none;">
-  <button class="btn btn-danger exitBtn" id="exitBtn" onclick="appendResult()">終了</button>
-  <div id="quiz">
-    <div id="quizHeader"></div>
-    <div id="quizBody"></div>
+  
+  <!-- ==================Home Page================ --> 
+  <span class="homeButtons">
+  <button class="btn btn-success startBtn" id="startBtn" onclick="startQuiz()">Quizを開始</button>
+  <button class="btn btn-success leaderboardBtn" id="leaderboardBtn" onclick="loadLeaderboard()">ランキング</button>
+  </span>
+  <button class="adminBtn" id="adminBtn" onclick="adminPanel()"><i class="fas fa-cog"></i> </button>
+  
+  <!-- ==================Quiz Body================ -->
+  <div id="mainBody" style="display: none;">
+    <button class="btn btn-danger exitBtn" id="exitBtn" onclick="appendResult()">終了</button>
+    <div id="quiz">
+      <div id="quizHeader"></div>
+      <div id="quizBody"></div>
+    </div>
   </div>
 </div>
 </body>
