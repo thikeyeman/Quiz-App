@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^Quiz-App/(.*)$ https://thikeyeman.github.io/Online-Quiz-App/$1 [R=301,L]

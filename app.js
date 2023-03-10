@@ -189,16 +189,16 @@ function appendResult() {
     });
 
     // Sort the array based on the score (percentage of correct answers) and time taken
-resultsArray.sort(function (a, b) {
-  const aScore = a.correctQuestions / a.totalQuestions;
-  const bScore = b.correctQuestions / b.totalQuestions;
-  if (aScore === bScore) {
-    // If scores are equal, sort by time taken (lowest time first)
-    return a.timeTaken.localeCompare(b.timeTaken);
-  }
-  // Otherwise, sort by score (highest score first)
-  return bScore - aScore;
-});
+    resultsArray.sort(function (a, b) {
+      const aScore = a.correctQuestions / a.totalQuestions;
+      const bScore = b.correctQuestions / b.totalQuestions;
+      if (aScore === bScore) {
+        // If scores are equal, sort by time taken (lowest time first)
+        return a.timeTaken.localeCompare(b.timeTaken);
+      }
+      // Otherwise, sort by score (highest score first)
+      return bScore - aScore;
+    });
 
 
     // Create the table and append the sorted results
