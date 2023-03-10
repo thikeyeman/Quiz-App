@@ -281,10 +281,7 @@ li {
   .username-cell {
     text-align: left; /* align text to the left */
   }
-  #quizBody {
-    background-color: rgb(211, 209, 209);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+  table{
     padding: 10px 5px;
   }
 }
