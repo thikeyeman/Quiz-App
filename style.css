@@ -1,5 +1,6 @@
 body {
   background-color: blueviolet !important;
+  overflow-y: hidden !important;
 }
 .homeButtons {
   display: flex;
@@ -222,9 +223,12 @@ li {
     padding: 30px !important;
     margin: 10px !important;
   }
+  #addBtnDiv{
+    display: flex;
+    flex-direction: row;
+  }
   #quiz, #panelInner {
     width: 90vw;
-    height: auto;
   }
   #quizHeader, #header, #addBtnDiv {
     height: auto;
