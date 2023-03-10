@@ -1,4 +1,4 @@
-Forked from: https://codepen.io/hrsiqb/details/zYqjMgV
+Based on: https://codepen.io/hrsiqb/details/zYqjMgV
 
 # Quiz-App
 Added functionality to show realtime results.
