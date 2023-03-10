@@ -1,0 +1,269 @@
+body {
+  background-color: blueviolet !important;
+}
+.startBtn, .homeBtn {
+  font-size: xx-large !important;
+  border-radius: 80px !important;
+  padding: 50px !important;
+  border: none !important;
+  margin: 20px !important;
+  transition: 500ms;
+}
+#adminBtn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#adminBtn i {
+  margin-right: 5px;
+}
+#mainDiv {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mainBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+}
+#quiz, #panelInner {
+  width: 800px;
+  height: 400px;
+  background-color: #fff;
+  display: grid;
+  grid-template-rows: 60px auto;
+  border-radius: 30px;
+}
+#panelInner {
+  height: 650px;
+  width: 1200px;
+  grid-template-rows: 60px auto 62px;
+}
+#loader {
+  width: 100px;
+  height: 100px;
+}
+#loaderDiv {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 13;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+#quizHeader, #header, #addBtnDiv {
+  height: 60px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+#quizHeader {
+  width: 800px;
+}
+#header {
+  justify-content: center;
+}
+#quizBody {
+  background-color: rgb(211, 209, 209);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding: 10px 20px;
+}
+#timer {
+  color: white;
+  padding: 18px;
+  background-color: rgb(130, 18, 182);
+  margin-right: -20px;
+  border-top-right-radius: 27px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+.option_group {
+  margin-left: 0;
+  padding-left: 0;
+}
+li {
+  list-style-type: none;
+}
+.option, .optionPanel {
+  border: 3px solid transparent;
+  border-radius: 50px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 40px;
+  margin: 10px 10px 10px 0;
+  min-height: 42px;
+  transition: 500ms;
+}
+.option:hover {
+  cursor: pointer;
+  border: 3px solid rgb(130, 18, 182);
+}
+.nxtBtn, .rstBtn {
+  background-color: rgb(130, 18, 182) !important;
+  border-radius: 50px !important;
+  padding: 15px !important;
+  border: none !important;
+  float: right;
+}
+.active {
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 40px;
+  margin: 10px 10px 10px 0;
+  color: white;
+  background-color: rgb(130, 18, 182);
+  border: 3px solid rgb(130, 18, 182);
+  transition: 500ms;
+}
+.exitBtn {
+  border-radius: 50px !important;
+  width: 200px;
+  height: 100px;
+  margin-bottom: 20px;
+  font-size: xx-large !important;
+}
+.nxtBtn:focus, .exitBtn:focus, .rstBtn:focus, .startBtn:focus, .adminBtn:focus, .homeBtn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.nxtBtn:hover, .exitBtn:hover, .rstBtn:hover, .startBtn:hover, .adminBtn:hover, ..homeBtn:hover {
+  background-color: white !important;
+  color: black !important;
+  transition: 500ms;
+}
+/* =================Admin Panel================ */
+#mainPanel {
+  min-width: 300px;
+  min-height: 650px;
+  justify-content: center;
+  align-items: center;
+}
+#questionsBody {
+  background-color: rgb(211, 209, 209);
+  padding: 10px 20px;
+  overflow-y: auto; /*when we'll add questions then scroll bar will be needed*/
+}
+#delAllBtn, #addBtn {
+  border-radius: 50%;
+  font-size: 30px;
+  padding: 8px 18px;
+  margin: 1px 30px;
+}
+#addBtnDiv {
+  height: 65px;
+  justify-content: center;
+  box-shadow: 0 -2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.homeBtn {
+  left: 70%;
+  position: fixed;
+  top: 40vh;
+  padding: 30px 50px !important;
+}
+.panelLi {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 42px;
+  align-items: center;
+  margin: 10px;
+}
+.liBtnAdd, .liBtnCancel, .liBtn {
+  font-size: 25px !important;
+  border-radius: 50% !important;
+  padding: 5px 13px !important;
+  margin: 0 20px;
+  max-height: 50px;
+}
+.liBtnAdd {
+  padding: 6px 13px 5px 13px !important;
+}
+.liBtnCancel {
+  padding: 6px 13px 13px 13px !important;
+}
+@media screen and (max-width: 768px) {
+  /* Adjustments to make the website responsive on mobile devices */
+  .startBtn, .adminBtn, .homeBtn {
+    font-size: large !important;
+    padding: 30px !important;
+    margin: 10px !important;
+  }
+  #quiz, #panelInner {
+    width: 90vw;
+    height: auto;
+  }
+  #quizHeader, #header, #addBtnDiv {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #quizHeader {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  #timer {
+    margin-right: 0;
+    margin-bottom: 10px;
+    border-top-right-radius: 0;
+  }
+  .option, .optionPanel {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .exitBtn {
+    width: 150px;
+    height: 75px;
+    margin-bottom: 10px;
+    font-size: large !important;
+  }
+  #mainPanel {
+    min-width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  #questionsBody {
+    max-height: 50vh;
+  }
+  #adminBtn {
+    position: fixed;
+    top: -25px;
+    right: -15px;
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0.5);
+  }
+}
