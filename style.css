@@ -1,7 +1,11 @@
 body {
   background-color: blueviolet !important;
 }
-.startBtn, .homeBtn {
+.homeButtons {
+    display: flex;
+  flex-direction: row;
+}
+.startBtn, .homeBtn, .leaderboardBtn {
   font-size: xx-large !important;
   border-radius: 80px !important;
   padding: 50px !important;
@@ -146,11 +150,11 @@ li {
   margin-bottom: 20px;
   font-size: xx-large !important;
 }
-.nxtBtn:focus, .exitBtn:focus, .rstBtn:focus, .startBtn:focus, .adminBtn:focus, .homeBtn:focus {
+.nxtBtn:focus, .exitBtn:focus, .rstBtn:focus, .startBtn:focus, .adminBtn:focus, .homeBtn:focus, .leaderboardBtn:focus {
   outline: none !important;
   box-shadow: none !important;
 }
-.nxtBtn:hover, .exitBtn:hover, .rstBtn:hover, .startBtn:hover, .adminBtn:hover, ..homeBtn:hover {
+.nxtBtn:hover, .exitBtn:hover, .rstBtn:hover, .startBtn:hover, .adminBtn:hover, ..homeBtn:hover, .leaderboardBtn:hover {
   background-color: white !important;
   color: black !important;
   transition: 500ms;
@@ -210,7 +214,10 @@ li {
 }
 @media screen and (max-width: 768px) {
   /* Adjustments to make the website responsive on mobile devices */
-  .startBtn, .adminBtn, .homeBtn {
+  .homeButtons {
+    flex-direction: column;
+  }
+  .startBtn, .adminBtn, .homeBtn, .leaderboardBtn {
     font-size: large !important;
     padding: 30px !important;
     margin: 10px !important;

@@ -24,6 +24,7 @@ getQuestions()
 function startQuiz() {
   document.getElementById("mainBody").style.display = "flex"
   document.getElementById("startBtn").style.display = "none"
+  document.getElementById("leaderboardBtn").style.display = "none"
   document.getElementById("adminBtn").style.display = "none"
 
   appendQuestion()
@@ -91,11 +92,68 @@ function uploadResults(username, correctQuestions, totalQuestions, timeTaken) {
   });
 }
 
+function loadLeaderboard() {
+  document.getElementById("mainBody").style.display = "flex"
+  document.getElementById("startBtn").style.display = "none"
+  document.getElementById("leaderboardBtn").style.display = "none"
+  document.getElementById("adminBtn").style.display = "none"
+  console.log("ok");
+  document.getElementById("exitBtn").style.display = "none"
+  clearInterval(interval)
+  quizHeader.innerHTML = "<h3>結果発表</h3>"
+  quizHeader.style.justifyContent = "center"
+  var ranking = 1;
+  // Fetch the results from the database and append them to the table
+  const resultsRef = firebase.database().ref("results");
+  resultsRef.once("value", function (snapshot) {
+    var resultsArray = []; // empty array to hold the results
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+      childData.key = childSnapshot.key; // add the key to the data for sorting later
+      resultsArray.push(childData); // add the data to the array
+    });
+
+    // Sort the array based on the score (percentage of correct answers)
+    resultsArray.sort(function (a, b) {
+      return (b.correctQuestions / b.totalQuestions) - (a.correctQuestions / a.totalQuestions);
+    });
+
+    // Create the table and append the sorted results
+    var divBody = "<table class='table table-bordered'>";
+    divBody += "<thead class='thead-dark'>";
+    divBody += "<tr>";
+    divBody += "<th>ランキング</th>";
+    divBody += "<th>ユーザー名</th>";
+    divBody += "<th>スコア</th>";
+    divBody += "<th>パーセンテージ</th>";
+    divBody += "<th>時間(mm:ss)</th>";
+    divBody += "</tr>";
+    divBody += "</thead>";
+    divBody += "<tbody>";
+
+    resultsArray.forEach(function (result) {
+      divBody += "<tr>";
+      divBody += `<td>${ranking}</td>`;
+      divBody += `<td>${result.username}</td>`;
+      divBody += `<td>${result.correctQuestions}/${result.totalQuestions}</td>`;
+      divBody += `<td>${((result.correctQuestions/result.totalQuestions)*100).toFixed(3)}%</td>`;
+      divBody += `<td>${result.timeTaken}</td>`;
+      divBody += "</tr>";
+      ranking++;
+    });
+
+    divBody += "</tbody>";
+    divBody += "</table>";
+    divBody += "<button class='btn btn-primary rstBtn' onclick='homePageReAttempt()'>ホームへ戻る</button>"
+    quizBody.innerHTML = divBody;
+  });
+}
+
 function appendResult() {
   var correctQuestions = 0 // number of questions that were answered correctly
   document.getElementById("exitBtn").style.display = "none"
   clearInterval(interval)
-  quizHeader.innerHTML = "<h3>Result</h3>"
+  quizHeader.innerHTML = "<h3>結果発表</h3>"
   quizHeader.style.justifyContent = "center"
 
   // Prompt for user's name
@@ -108,6 +166,7 @@ function appendResult() {
       correctQuestions++
     }
   }
+
   // Upload the current user's result to the database
   uploadResults(userName, correctQuestions, questions.length, formattedMinutes + ":" + formattedSeconds);
   var ranking = 1;
@@ -152,7 +211,7 @@ function appendResult() {
 
     divBody += "</tbody>";
     divBody += "</table>";
-    divBody += "<button class='btn btn-primary rstBtn' onclick='homePageReAttempt()'>Re-Attempt Quiz</button>"
+    divBody += "<button class='btn btn-primary rstBtn' onclick='homePageReAttempt()'>Quizを再開</button>"
     quizBody.innerHTML = divBody;
   });
 }
@@ -168,6 +227,7 @@ function adminPanel() {
 
   document.getElementById("mainBody").style.display = "none";
   document.getElementById("startBtn").style.display = "none";
+  document.getElementById("leaderboardBtn").style.display = "none";
   document.getElementById("adminBtn").style.display = "none";
   document.getElementById("mainPanel").style.display = "flex";
   appendAllQuestions();
@@ -175,17 +235,11 @@ function adminPanel() {
 
 
 function homePageReAttempt() {
-  // we also need to clear the result table
-  var first = document.getElementById("quizHeader").firstChild
-  first.remove()
-  first = document.getElementById("quizBody").firstChild
-  while (first) {
-    first.remove()
-    first = document.getElementById("quizBody").firstChild
-  }
+
   clearInterval(interval) //the quiz time also needs to be reset
   document.getElementById("mainBody").style.display = "none"
   document.getElementById("startBtn").style.display = "block"
+  document.getElementById("leaderboardBtn").style.display = "block"
   document.getElementById("adminBtn").style.display = "block"
   document.getElementById("exitBtn").style.display = "block"
   document.getElementById("quizHeader").style.justifyContent = "space-between"
@@ -198,6 +252,7 @@ function homePageReAttempt() {
 function homePage() {
   document.getElementById("mainBody").style.display = "none"
   document.getElementById("startBtn").style.display = "block"
+  document.getElementById("leaderboardBtn").style.display = "block"
   document.getElementById("adminBtn").style.display = "block"
   document.getElementById("mainPanel").style.display = "none"
   var questionsUl = document.getElementById("questionsUl")
