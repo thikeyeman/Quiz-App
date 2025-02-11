@@ -234,20 +234,36 @@ function appendResult() {
 
 
 // =====================Admin Panel========================
-function adminPanel() {
-  var password = prompt("パスワード入力");
-  if (password !== "root") {
-    alert("間違ってます。");
-    return;
+ async function adminPanel() {
+    const password = prompt("パスワード入力");
+
+    // Precomputed SHA-256 hash for "root"
+    const correctHash = "4813494c17a057de266b6a6d6244ee6c082a7dc0ed2bcf8b974e0b8d99bfb00b";
+
+    // Hash the user's input and compare
+    const userHash = await hashPassword(password);
+    if (userHash !== correctHash) {
+      alert("間違ってます。");
+      return;
+    }
+
+    document.getElementById("mainBody").style.display = "none";
+    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("leaderboardBtn").style.display = "none";
+    document.getElementById("adminBtn").style.display = "none";
+    document.getElementById("mainPanel").style.display = "flex";
+    appendAllQuestions();
   }
 
-  document.getElementById("mainBody").style.display = "none";
-  document.getElementById("startBtn").style.display = "none";
-  document.getElementById("leaderboardBtn").style.display = "none";
-  document.getElementById("adminBtn").style.display = "none";
-  document.getElementById("mainPanel").style.display = "flex";
-  appendAllQuestions();
-}
+  // Function to hash the input password using SHA-256
+  async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    return hashHex;
+  }
 
 
 function homePageReAttempt() {
