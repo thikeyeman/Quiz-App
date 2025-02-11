@@ -237,10 +237,7 @@ function appendResult() {
  async function adminPanel() {
     const password = prompt("パスワード入力");
 
-    // Precomputed SHA-256 hash for "root"
-    const correctHash = "4813494c17a057de266b6a6d6244ee6c082a7dc0ed2bcf8b974e0b8d99bfb00b";
-
-    // Hash the user's input and compare
+    const correctHash = "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2";
     const userHash = await hashPassword(password);
     if (userHash !== correctHash) {
       alert("間違ってます。");
