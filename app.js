@@ -234,23 +234,20 @@ function appendResult() {
 
 
 // =====================Admin Panel========================
- async function adminPanel() {
-    const password = prompt("パスワード入力");
-
-    const correctHash = "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2";
-    const userHash = await hashPassword(password);
-    if (userHash !== correctHash) {
-      alert("間違ってます。");
-      return;
-    }
-
-    document.getElementById("mainBody").style.display = "none";
-    document.getElementById("startBtn").style.display = "none";
-    document.getElementById("leaderboardBtn").style.display = "none";
-    document.getElementById("adminBtn").style.display = "none";
-    document.getElementById("mainPanel").style.display = "flex";
-    appendAllQuestions();
+function adminPanel() {
+  var password = prompt("パスワード入力");
+  if (password !== "root") {
+    alert("間違ってます。");
+    return;
   }
+
+  document.getElementById("mainBody").style.display = "none";
+  document.getElementById("startBtn").style.display = "none";
+  document.getElementById("leaderboardBtn").style.display = "none";
+  document.getElementById("adminBtn").style.display = "none";
+  document.getElementById("mainPanel").style.display = "flex";
+  appendAllQuestions();
+}
 
   // Function to hash the input password using SHA-256
   async function hashPassword(password) {
